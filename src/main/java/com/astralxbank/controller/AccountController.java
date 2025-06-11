@@ -1,15 +1,26 @@
 package com.astralxbank.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.astralxbank.entity.Account;
+import com.astralxbank.service.AccountService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/account")
+@RequiredArgsConstructor
 public class AccountController {
 
-    @GetMapping("/test")
-    public String test() {
-        return "You have accessed a protected endpoint!";
+    private final AccountService accountService;
+
+    @PostMapping("/create")
+    public Account createAccount() {
+        return accountService.createAccount();
+    }
+
+    @GetMapping("/my-accounts")
+    public List<Account> getUserAccounts() {
+        return accountService.getUserAccounts();
     }
 }
