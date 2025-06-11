@@ -21,7 +21,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(@RequestBody LoginRequest request) {
-        // JWT'yi bir sonraki adımda ekleyeceğiz
-        return "JWT-Token-Here (implement edeceğiz)";
+        return userService.login(request.getUsername(), request.getPassword());
     }
+
 }
